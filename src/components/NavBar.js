@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import {Link} from "react-router-dom";
+import React from "react";
+import {Link,useLocation} from "react-router-dom";
 
 
-export default class NavBar extends Component {
-  render() {
+const NavBar =(props)=> {
+  let location=useLocation();
     return (
       <div>
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
           <Link className="navbar-brand" to="/">
-          iNoteBook
+          {props.title}
           </Link>
           <button
             className="navbar-toggler"
@@ -25,12 +25,12 @@ export default class NavBar extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item ">
-                <Link className="nav-link" to="/">
+                <Link className={`nav-link ${location.pathname==="/"?"active":""}`} to="/">
                   Home <span className="sr-only"></span>
                 </Link>
               </li>
                <li className="nav-item">
-                <Link className="nav-link" to="/about">About</Link></li>
+                <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">About</Link></li>
             </ul>
             <form className="form-inline my-2 my-lg-0">
               <input
@@ -51,4 +51,5 @@ export default class NavBar extends Component {
       </div>
     );
   }
-}
+
+export default NavBar;
