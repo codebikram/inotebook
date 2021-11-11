@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
-function LogIn() {
+
+
+function LogIn(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" })
     let history = useHistory();
     const onChangeText = (e) => {
@@ -18,29 +20,32 @@ function LogIn() {
         const json = await response.json();
         console.log(json)
         if(json.success){
+            //save the token in local storage
+            localStorage.setItem('token',json.authtoken);
             //redirect
+            props.showAlert('Loged in successfully',"success")
+            history.push('/');
         }else{
-            alert('invalid')
+             props.showAlert('Invalid credentials',"danger")
         }
-
     }
     return (
-        <div className="my-3">
-            <h2>Log in</h2>
-            <form onSubmit={handleLogin}>
+        <>
+            <h2>Log in your notebook</h2>
+            <form onSubmit={handleLogin}  className="mt-3">
                 <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email address</label>
                     <input type="email" className="form-control" id="email" name='email' value={credentials.email}
-                        placeholder="Enter email here" onChange={onChangeText} required />
+                        placeholder="Enter email here" onChange={onChangeText} required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input type="password" className="form-control" id="password" name='password' value={credentials.password}
-                        placeholder="Enter tag here" onChange={onChangeText} required />
+                        placeholder="Enter password here" onChange={onChangeText} required/>
                 </div>
                 <button type="submit" className="btn btn-dark">Log In</button>
             </form>
-        </div>
+        </>
     )
 }
 

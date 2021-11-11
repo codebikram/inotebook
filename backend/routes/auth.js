@@ -10,11 +10,12 @@ const fetchuser = require('../middleware/fetchuser');
 const JWT_SECRET = 'bikramis$goodboy';
 
 //ROUTE 1: create user using POST: "api/auth/create-user" FOR SIGN UP
-router.post('/create-user', [
+router.post('/createuser', [
     body('name', 'Enter a valid Name').isLength({ min: 3 }),
     body('email', 'Enter a vaild Email id').isEmail(),
     body('password', 'Password must have minimum 5 character').isLength({ min: 5 }),
 ], async (req, res) => {
+    let success = false;
     // if there are error, return bad request, error   
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -39,10 +40,11 @@ router.post('/create-user', [
                 }
             }
             const authtoken = jwt.sign(data, JWT_SECRET);
-            res.json({ authtoken });
+            success = true;
+            res.json({ success, authtoken });
         }
         else {
-            return res.status(400).json({ error: "Sorry a user with this email alredy exists" });
+            return res.status(400).json({ success, error: "Sorry a user with this email alredy exists" });
         }
     } catch (error) {
         console.error(error.message);

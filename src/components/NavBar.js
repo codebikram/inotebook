@@ -5,8 +5,7 @@ import {Link,useLocation} from "react-router-dom";
 const NavBar =(props)=> {
   let location=useLocation();
     return (
-      <div>
-        <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
           <Link className="navbar-brand" to="/">
           {props.title}
           </Link>
@@ -48,7 +47,6 @@ const NavBar =(props)=> {
             </form>
           </div>
         </nav>
-      </div>
     );
   }
 

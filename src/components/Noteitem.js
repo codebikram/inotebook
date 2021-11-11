@@ -11,7 +11,8 @@ function Noteitem(props) {
     }
 
     const handleDeleteClick=()=>{
-        deleteNote(props.note._id)
+        deleteNote(props.note._id);
+        props.showAlert('Deleted successfully','success')
     }
     return (
         <div className='col-md-4'>
@@ -25,7 +26,7 @@ function Noteitem(props) {
                         </div>
                     </div>
                     <p className="card-text">{description}</p>
-                    <p className="card-text"><span class="badge badge-secondary">{tag}</span></p>
+                    <p className="card-text"><span className="badge badge-secondary">{tag}</span></p>
                 </div>
             </div>
         </div>
