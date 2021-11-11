@@ -16,7 +16,6 @@ const NoteState = (props) => {
       },
     });
     const json = await response.json();
-    console.log(json);
     setNotes(json);
   }
   // Add note function
@@ -30,24 +29,13 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag })
     });
-    const json = await response.json();
-    console.log("adding a note" + json)
-    let note = {
-      "_id": "616ea0a8fee927e822c676fa",
-      "user": "616e54e6d1e5685b12570669",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "date": "2021-10-19T10:40:40.097Z",
-      "__v": 0
-    };
+    const note = await response.json();
     setNotes(notes.concat(note));
   }
 
   //edit note function 
   const editNote = async (id, title, description, tag) => {
     //api call 
-    console.log(id);
     const response = await fetch(`${host}/api/notes/updatenotes/${id}`, {
       method: 'PUT',
       headers: {

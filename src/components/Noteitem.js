@@ -25,9 +25,7 @@ function Noteitem(props) {
                         </div>
                     </div>
                     <p className="card-text">{description}</p>
-                    <p className="card-text"><b>Tag : </b>{tag}</p>
-
-
+                    <p className="card-text"><span class="badge badge-secondary">{tag}</span></p>
                 </div>
             </div>
         </div>

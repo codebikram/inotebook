@@ -55,6 +55,7 @@ router.post('/login', [
     body('email', 'Enter a vaild Email id').isEmail(),
     body('password', 'Password field can not be empty').exists(),
 ], async (req, res) => {
+    let success = false;
     // if there are error, return bad request, error   
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -74,14 +75,15 @@ router.post('/login', [
                     }
                 }
                 const authtoken = jwt.sign(data, JWT_SECRET);
-                res.json({ authtoken });
+                success = true;
+                res.json({ success, authtoken });
             }
             else {
-                return res.status(400).json({ error: "Please enter correct details" });
+                return res.status(400).json({ success, error: "Please enter correct details" });
             }
         }
         else {
-            return res.status(400).json({ error: "Please enter correct details" });
+            return res.status(400).json({ success, error: "Please enter correct details" });
         }
 
     } catch (error) {

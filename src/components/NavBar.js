@@ -33,18 +33,18 @@ const NavBar =(props)=> {
                 <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">About</Link></li>
             </ul>
             <form className="form-inline my-2 my-lg-0">
-              <input
-                className="form-control mr-sm-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button
-                className="btn btn-outline-light my-2 my-sm-0"
-                type="submit"
+            <Link
+                className="btn btn-primary my-2 text-white"
+                role="button" to='/login'
               >
-                Search
-              </button>
+                Log In
+              </Link>
+              <Link
+                className="btn btn-primary text-white mx-2 my-2"
+                role="button" to='/signup'
+              >
+                Sign Up
+              </Link>
             </form>
           </div>
         </nav>
