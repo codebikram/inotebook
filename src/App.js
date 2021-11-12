@@ -1,4 +1,3 @@
-import './App.css';
 import { useState } from 'react';
 import {
   BrowserRouter as Router,
@@ -31,7 +30,7 @@ function App() {
     <>
       <NoteState>
         <Router>
-          <NavBar title="iNoteBook" />
+          <NavBar title="NoteBook" showAlert={showAlert} />
           <Alert alert={alert} />
           <div className="container mt-5">
             <Switch>

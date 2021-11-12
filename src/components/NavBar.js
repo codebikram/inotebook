@@ -1,12 +1,19 @@
 import React from "react";
-import {Link,useLocation} from "react-router-dom";
+import {Link,useLocation,useHistory} from "react-router-dom";
 
 
 const NavBar =(props)=> {
   let location=useLocation();
+  let history=useHistory();
+
+  const handleLogOut=()=>{
+    localStorage.removeItem('token');
+    history.push('/login')
+    props.showAlert("Logged out successfully",'success');
+  }
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-          <Link className="navbar-brand" to="/">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{height :"50px"}}>
+          <Link className="navbar-brand" to="/">  
           {props.title}
           </Link>
           <button
@@ -31,20 +38,20 @@ const NavBar =(props)=> {
                <li className="nav-item">
                 <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">About</Link></li>
             </ul>
-            <form className="form-inline my-2 my-lg-0">
+          { !localStorage.getItem("token")? <form className="form-inline my-2 my-lg-0">
             <Link
-                className="btn btn-primary my-2 text-white"
+                className="btn btn-outline-primary my-2 text-white"
                 role="button" to='/login'
               >
                 Log In
               </Link>
               <Link
-                className="btn btn-primary text-white mx-2 my-2"
+                className="btn btn-outline-primary text-white mx-2 my-2"
                 role="button" to='/signup'
               >
                 Sign Up
               </Link>
-            </form>
+            </form>:<button className="btn btn-outline-primary text-white my-2" onClick={handleLogOut}>Log Out</button>}
           </div>
         </nav>
     );

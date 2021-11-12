@@ -23,7 +23,7 @@ function LogIn(props) {
             //save the token in local storage
             localStorage.setItem('token',json.authtoken);
             //redirect
-            props.showAlert('Loged in successfully',"success")
+            props.showAlert('Logged in successfully',"success")
             history.push('/');
         }else{
              props.showAlert('Invalid credentials',"danger")
@@ -31,7 +31,7 @@ function LogIn(props) {
     }
     return (
         <>
-            <h2>Log in your notebook</h2>
+            <h2>Log in to your notebook</h2>
             <form onSubmit={handleLogin}  className="mt-3">
                 <div className="form-group">
                     <label htmlFor="email">Email address</label>

@@ -10,31 +10,37 @@ function SignUp(props) {
     }
     const handleSignUp = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name: credentials.name, email: credentials.email, password: credentials.password })
-        });
-        const json = await response.json();
-        console.log(json);
-        if(json.success){
-            //save the token in local storage
-            localStorage.setItem('token',json.authtoken);
-            //redirect
-            props.showAlert('Accounter created successfully',"success");
+        const { name, email, password, cpassword } = credentials;
+        if (password !== cpassword) {
+            props.showAlert('Confirm your password correctly', "warning");
 
-            history.push('/login');
-        }else{
-            props.showAlert('Invalid details',"danger");
+        } else {
+            const response = await fetch(`http://localhost:5000/api/auth/createuser`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, password})
+            });
+            const json = await response.json();
+            console.log(json);
+            if (json.success) {
+                //save the token in local storage
+                localStorage.setItem('token', json.authtoken);
+                //redirect
+                props.showAlert('Accounter created successfully', "success");
 
+                history.push('/login');
+            } else {
+                props.showAlert('Invalid details', "danger");
+
+            }
         }
     }
     return (
         <>
-            <h2>Sign Up to use NoteBook</h2>
-            <form onSubmit={handleSignUp}  className="mt-3">
+            <h2>Create an account to use NoteBook</h2>
+            <form onSubmit={handleSignUp} className="mt-3">
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
                     <input type="text" className="form-control" id="name" name='name' value={credentials.name}
