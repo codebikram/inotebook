@@ -19,29 +19,29 @@ function LogIn(props) {
         });
         const json = await response.json();
         console.log(json)
-        if(json.success){
+        if (json.success) {
             //save the token in local storage
-            localStorage.setItem('token',json.authtoken);
+            localStorage.setItem('token', json.authtoken);
             //redirect
-            props.showAlert('Logged in successfully',"success")
+            props.showAlert('Logged in successfully', "success")
             history.push('/');
-        }else{
-             props.showAlert('Invalid credentials',"danger")
+        } else {
+            props.showAlert('Invalid credentials', "danger")
         }
     }
     return (
         <>
             <h2>Log in to your notebook</h2>
-            <form onSubmit={handleLogin}  className="mt-3">
+            <form onSubmit={handleLogin} className="mt-3">
                 <div className="form-group">
                     <label htmlFor="email">Email address</label>
                     <input type="email" className="form-control" id="email" name='email' value={credentials.email}
-                        placeholder="Enter email here" onChange={onChangeText} required/>
+                        placeholder="Enter email here" onChange={onChangeText} required />
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input type="password" className="form-control" id="password" name='password' value={credentials.password}
-                        placeholder="Enter password here" onChange={onChangeText} required/>
+                        placeholder="Enter password here" onChange={onChangeText} required />
                 </div>
                 <button type="submit" className="btn btn-dark">Log In</button>
             </form>

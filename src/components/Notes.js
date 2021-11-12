@@ -5,17 +5,17 @@ import AddNote from './AddNote';
 import Noteitem from './Noteitem'
 
 function Notes(props) {
-    const {showAlert}=props;
+    const { showAlert } = props;
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "Default" })
     const ref = useRef(null);
     const refClose = useRef(null);
-    let history=useHistory();
+    let history = useHistory();
     useEffect(() => {
-        if(localStorage.getItem('token')){
+        if (localStorage.getItem('token')) {
             getNotes();
-        }else{
+        } else {
             history.push('/login')
         }
         // eslint-disable-next-line
@@ -23,7 +23,7 @@ function Notes(props) {
     const handleUpdateClick = () => {
         editNote(note.id, note.etitle, note.edescription, note.etag);
         refClose.current.click();
-        showAlert('Updated successfully','success');
+        showAlert('Updated successfully', 'success');
 
     }
     const onChangeText = (e) => {
@@ -78,12 +78,12 @@ function Notes(props) {
             <h2 className='my-3'>Your Notes</h2>
             <div className='row my-1'>
                 <div className="container ml-1">
-              
+
                     {notes.length === 0 && 'No notes to display !!'}
-              
+
                 </div>
                 {notes.map((note) => {
-                    return <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={showAlert}/>
+                    return <Noteitem key={note._id} updateNote={updateNote} note={note} showAlert={showAlert} />
                 })}
             </div>
         </>

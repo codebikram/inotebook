@@ -6,13 +6,13 @@ function Noteitem(props) {
     const { deleteNote } = context;
     const { title, description, tag } = props.note;
 
-    const handleEditClick=()=>{
+    const handleEditClick = () => {
         props.updateNote(props.note)
     }
 
-    const handleDeleteClick=()=>{
+    const handleDeleteClick = () => {
         deleteNote(props.note._id);
-        props.showAlert('Deleted successfully','success')
+        props.showAlert('Deleted successfully', 'success')
     }
     return (
         <div className='col-md-4'>
