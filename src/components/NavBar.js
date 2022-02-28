@@ -12,7 +12,7 @@ const NavBar = (props) => {
     props.showAlert("Logged out successfully", 'success');
   }
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{ height: "50px" }}>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark" style={{ height: "55px" }}>
       <Link className="navbar-brand" to="/">
         {props.title}
       </Link>
@@ -37,21 +37,21 @@ const NavBar = (props) => {
           </li>
           <li className="nav-item">
             <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link></li>
-        </ul>
+            </ul>
         {!localStorage.getItem("token") ? <form className="form-inline my-2 my-lg-0">
           <Link
-            className="btn btn-outline-primary my-2 text-white"
+            className="btn btn-primary mx-1 my-2"
             role="button" to='/login'
           >
-            Log In
+            Log in
           </Link>
           <Link
-            className="btn btn-outline-primary text-white mx-2 my-2"
+            className="btn btn-success mx-1 my-2"
             role="button" to='/signup'
           >
-            Sign Up
+            Sign up
           </Link>
-        </form> : <button className="btn btn-outline-primary text-white my-2" onClick={handleLogOut}>Log Out</button>}
+        </form> : <button className="btn btn-danger text-white my-2" onClick={handleLogOut}>Log Out</button>}
       </div>
     </nav>
   );

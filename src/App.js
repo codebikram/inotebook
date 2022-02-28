@@ -11,6 +11,7 @@ import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
+import './App.css'
 
 function App() {
   const [alert, setAlert] = useState(null);
@@ -30,7 +31,7 @@ function App() {
     <>
       <NoteState>
         <Router>
-          <NavBar title="NoteBook" showAlert={showAlert} />
+          <NavBar title="iNoteBook" showAlert={showAlert} />
           <Alert alert={alert} />
           <div className="container mt-5">
             <Switch>

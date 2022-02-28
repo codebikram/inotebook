@@ -19,8 +19,8 @@ function AddNote(props) {
     }
     return (
         <>
-            <h2>Add a Note</h2>
-            <form className="my-2">
+            <h2>Add a note</h2>
+            <form>
                 <div className="form-group">
                     <label htmlFor="title">Title</label>
                     <input type="text" className="form-control" id="title" name='title' value={note.title}

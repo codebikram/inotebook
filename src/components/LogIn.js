@@ -31,7 +31,7 @@ function LogIn(props) {
     }
     return (
         <>
-            <h2>Log in to your notebook</h2>
+            <h2>Log in to iNoteBook</h2>
             <form onSubmit={handleLogin} className="mt-3">
                 <div className="form-group">
                     <label htmlFor="email">Email address</label>
@@ -43,7 +43,7 @@ function LogIn(props) {
                     <input type="password" className="form-control" id="password" name='password' value={credentials.password}
                         placeholder="Enter password here" onChange={onChangeText} required />
                 </div>
-                <button type="submit" className="btn btn-dark">Log In</button>
+                <button type="submit" className="btn btn-dark">Log in</button>
             </form>
         </>
     )
